@@ -1,0 +1,15 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY batch_fraud_detection_api.py .
+COPY fraud_detection_model.pkl .
+
+EXPOSE 5000
+
+CMD ["python", "batch_fraud_detection_api.py"]
+
